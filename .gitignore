@@ -33,3 +33,5 @@ packages/
 AMP POC/fonts/
 AMP POC/App_Start/RouteConfig.cs
 /lib/
+/AMP POC/App_Config/Include/Rainbow.config
+/AMP POC/App_Config/Include/Unicorn/
