@@ -168,8 +168,8 @@
     <Content Include="App_Config\Include\Unicorn\Unicorn.config" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.AutoPublish.config" />
     <None Include="App_Config\Include\Unicorn\Unicorn.Configs.Default.config" />
+    <Content Include="Views\Layouts\Amp\Amp MVC Layout.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
-    <Content Include="layouts\Amp Layout.aspx" />
     <Content Include="layouts\Sample layout.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -182,6 +182,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Test.cshtml" />
+    <Content Include="Views\Renderings\Amp\Amp Css.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
