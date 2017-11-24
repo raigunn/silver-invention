@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h2>Static Cat</h2>
+<div>
+    <img src="https://i.ytimg.com/vi/w6DW4i-mfbA/hqdefault.jpg" height="360" width="480" alt="static kitten" />
+</div>
+
+
+<h2>Picture Tag Cat</h2>
+<div>
+    <picture>
+        <source srcset="images/cat-large.jpg" media="(min-width: 670px)" />
+        <source srcset="images/cat-medium.jpg" media="(min-width: 470px) and (max-width: 669px)" />
+        <source srcset="images/cat-small.jpg" media="(max-width: 469px)" />
+
+        <img src="images/cat-large.jpg" srcset="images/cat-large.jpg" />
+    </picture>
+</div>
+
+
+<h2>Amp-Img Tag Cat</h2>
+<div>
+    <amp-img alt="grey cat"
+             media="(min-width: 670px)"
+             width="650"
+             height="433"
+             src="images/cat-large.jpg"></amp-img>
+    <amp-img alt="grey cat"
+             media="(min-width: 470px) and (max-width: 669px)"
+             width="450"
+             height="300"
+             src="images/cat-medium.jpg"></amp-img>
+    <amp-img alt="grey cat"
+             media="(max-width: 469px)"
+             width="226"
+             height="151"
+             src="images/cat-small.jpg"></amp-img>
+</div>

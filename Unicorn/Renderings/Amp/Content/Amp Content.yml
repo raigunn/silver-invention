@@ -1,13 +1,13 @@
 ﻿---
-ID: "4431d1ec-e6ae-4751-acbb-2018c651c9a0"
-Parent: "7152a175-190b-4bf5-9176-d032ef89c62d"
+ID: "720f15df-a36b-409b-851b-61b41544c02f"
+Parent: "ae464475-7699-448c-8f50-bcf8d24cc944"
 Template: "99f8905d-4a87-4eb8-9f8b-a9bebfb3add6"
-Path: /sitecore/layout/Renderings/Amp/Amp Css
+Path: /sitecore/layout/Renderings/Amp/Content/Amp Content
 DB: master
 SharedFields:
 - ID: "51b435bc-f7b9-478a-9c51-52916af96ff5"
   Hint: Path
-  Value: /Views/Renderings/Amp/Amp Css.cshtml
+  Value: ~/Views/Renderings/Amp/Content/AmpContent.cshtml
 Languages:
 - Language: en
   Versions:
@@ -15,4 +15,4 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20171122T163833Z
+      Value: 20171124T182225Z

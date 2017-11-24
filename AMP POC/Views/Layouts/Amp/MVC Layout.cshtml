@@ -4,14 +4,11 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html amp lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8" />
-        <script async src="https://cdn.ampproject.org/v0.js"></script>
         <title>@Html.Sitecore().Field("title", new { DisableWebEdit = true })</title>
-        <style amp-custom>
-            @Html.Sitecore().Placeholder("css")
-        </style>
+        <link rel="stylesheet" type="text/css" href="styles/sample.css">
         @* @Html.Sitecore().VisitorIdentification() *@
     </head>
     <body>

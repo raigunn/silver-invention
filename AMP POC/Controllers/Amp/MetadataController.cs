@@ -17,7 +17,7 @@ namespace AMP_POC.Controllers.Amp
         public ActionResult AmpCssControllerRendering()
         {
             string css = System.IO.File.ReadAllText(Server.MapPath("~/styles/sample.css"));
-            return View(new MvcHtmlString(css));// return View(css);
+            return View(new MvcHtmlString(css));
         }
     }
 }

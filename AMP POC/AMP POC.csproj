@@ -47,6 +47,10 @@
       <HintPath>..\packages\Configy.1.0.0\lib\net45\Configy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.6.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.6.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Kamsar.WebConsole, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Kamsar.WebConsole.2.0.0\lib\net40\Kamsar.WebConsole.dll</HintPath>
       <Private>True</Private>
@@ -170,14 +174,22 @@
     </Content>
     <Content Include="App_Config\Include\Unicorn\Unicorn.AutoPublish.config" />
     <None Include="App_Config\Include\Unicorn\Unicorn.Configs.Default.config" />
+    <Content Include="images\cat-large.jpg" />
+    <Content Include="images\cat-medium.jpg" />
+    <Content Include="images\cat-original.jpg" />
+    <Content Include="images\cat-small.jpg" />
     <Content Include="styles\sample.css" />
     <Content Include="Views\Layouts\Amp\Amp MVC Layout.cshtml" />
+    <None Include="App_Config\Include\z.Amp\Amp.Filter.config" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="layouts\Sample layout.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Amp\MetadataController.cs" />
+    <Compile Include="Pipelines\ActionExecuted\AmpResultExecutedFilter.cs" />
+    <Compile Include="Pipelines\ActionExecuted\AmpMarkupConverter.cs" />
+    <Compile Include="Pipelines\ActionExecuted\RegisterFilterStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -186,8 +198,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Test.cshtml" />
-    <Content Include="Views\Renderings\Amp\Amp Css.cshtml" />
     <Content Include="Views\Metadata\AmpCssControllerRendering.cshtml" />
+    <Content Include="Views\Renderings\Amp\Content\AmpContent.cshtml" />
+    <Content Include="Views\Layouts\Amp\MVC Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
