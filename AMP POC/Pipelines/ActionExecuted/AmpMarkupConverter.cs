@@ -6,8 +6,13 @@ using System.Text;
 using System.Web;
 using HtmlAgilityPack;
 
+
 namespace AMP_POC.Pipelines.ActionExecuted
 {
+    /// <summary>
+    /// current issue: how do we handle images without height and width params, which are required by AMP
+    /// https://ampbyexample.com/advanced/how_to_support_images_with_unknown_dimensions/
+    /// </summary>
     public class AmpMarkupConverter
     {
         private readonly string source;
@@ -46,7 +51,7 @@ namespace AMP_POC.Pipelines.ActionExecuted
             var result = ReplaceIframeWithLink(source);
             result = StripInlineStyles(result);
             result = ReplaceEmbedWithLink(result);
-            //result = UpdatePictureImages(result);
+            result = UpdatePictureImages(result);
             result = UpdateAmpImages(result);
             return result;
         }
@@ -175,42 +180,7 @@ namespace AMP_POC.Pipelines.ActionExecuted
             return current;
         }
 
-
-
-        //private MemoryStream UpdateAmpImages(MemoryStream current)
-        //{
-        //    // Uses HtmlAgilityPack (install-package HtmlAgilityPack)
-        //    var doc = new HtmlDocument();
-        //    doc.Load(current);
-        //    var imageList = doc.DocumentNode.Descendants("img");
-
-        //    const string ampImage = "amp-img";
-        //    var htmlNodes = imageList as IList<HtmlNode> ?? imageList.ToList();
-        //    if (!htmlNodes.Any())
-        //    {
-        //        return current;
-        //    }
-
-        //    if (!HtmlNode.ElementsFlags.ContainsKey(ampImage))
-        //    {
-        //        HtmlNode.ElementsFlags.Add(ampImage, HtmlElementFlag.Closed);
-        //    }
-
-        //    foreach (var imgTag in htmlNodes)
-        //    {
-        //        var replacement = imgTag.Clone();
-        //        replacement.Name = ampImage;
-        //        replacement.Attributes.Remove("caption");
-        //        replacement.Attributes.Add("layout", "fixed-height");
-        //        //replacement.Attributes.Add("layout", "responsive");
-        //        replacement.Attributes.Add("height", "112");
-        //        //replacement.Attributes.Add("width", "112");
-        //        current = current.Replace(imgTag.OuterHtml, replacement.OuterHtml);
-        //    }
-
-        //    return current;
-        //}
-
+        
 
         private string UpdateAmpImages(string current)
         {
@@ -244,6 +214,55 @@ namespace AMP_POC.Pipelines.ActionExecuted
 
             return current;
         }
+
+
+
+
+
+
+        private string UpdatePictureImages(string current)
+        {
+            // Uses HtmlAgilityPack (install-package HtmlAgilityPack)
+            var doc = GetHtmlDocument(current);
+            IList<HtmlNode> pictureList = doc.DocumentNode.Descendants("picture").ToList();
+            const string ampImage = "amp-img";
+
+            IList<HtmlNode> sourceNodes = new List<HtmlNode>();
+            foreach (var pictureNode in pictureList)
+            {
+                var parentNode = pictureNode.ParentNode;  // parent of the <picture> node
+                var parentNodeOriginal = parentNode.InnerHtml;
+                var childNodes = pictureNode.ChildNodes;  // all children of the <picture> node
+                foreach (var childNode in childNodes)
+                {
+                    if (childNode.Name.Equals("source"))
+                    {
+                        sourceNodes.Add(childNode);
+                    }
+                }
+
+                foreach (var sourceNode in sourceNodes)
+                {
+                    var ampImgSrcNode = sourceNode.Clone();
+                    ampImgSrcNode.Name = ampImage;
+                    ampImgSrcNode.Attributes.Add("src", sourceNode.Attributes["srcset"].Value);
+                    ampImgSrcNode.Attributes.Remove("srcset");
+                    ampImgSrcNode.Attributes.Add("layout", "fill");
+                    ampImgSrcNode.Attributes.Add("class", "contain");
+                    //ampImgSrcNode.Attributes.Add("height", "100%");
+                    //ampImgSrcNode.Attributes.Add("width", "100%");
+                    parentNode.InsertBefore(ampImgSrcNode, pictureNode);
+                }
+                
+                parentNode.RemoveChild(pictureNode);
+                current = current.Replace(parentNodeOriginal, parentNode.InnerHtml);
+            }
+            return current;
+        }
+
+
+
+
 
         private HtmlDocument GetHtmlDocument(string htmlContent)
         {

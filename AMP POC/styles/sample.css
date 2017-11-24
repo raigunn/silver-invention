@@ -53,3 +53,15 @@ COLOR: #666666; FONT-FAMILY: courier, monaco, courier new; FONT-SIZE: 12pt
 KBD {
 COLOR: #666666; FONT-FAMILY: courier, monaco, courier new; FONT-SIZE: 12pt
 }
+
+
+.fixed-container {
+	position: relative;
+	width: 200px;
+	height: 200px;
+}
+
+
+amp-img.contain img {
+	object-fit: contain;
+}
