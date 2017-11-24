@@ -1,0 +1,18 @@
+﻿---
+ID: "e03dbfda-7bf0-4a46-8b17-c90538318c8e"
+Parent: "31dcf4b7-ffef-40af-8d98-a5e94a3484f9"
+Template: "5c547d4e-7111-4995-95b0-6b561751bf2e"
+Path: /sitecore/layout/Placeholder Settings/Amp/css
+DB: master
+SharedFields:
+- ID: "7256bdab-1fd2-49dd-b205-cb4873d2917c"
+  Hint: Placeholder Key
+  Value: css
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20171124T172005Z

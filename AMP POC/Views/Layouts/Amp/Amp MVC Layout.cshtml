@@ -7,6 +7,10 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>@Html.Sitecore().Field("title", new { DisableWebEdit = true })</title>
+        <style amp-custom>
+            @*Html.Sitecore().Rendering("/sitecore/layout/renderings/amp/metadata/amp css controller rendering")*@
+            @Html.Sitecore().Placeholder("css")
+        </style>
         @* @Html.Sitecore().VisitorIdentification() *@
     </head>
     <body>

@@ -165,15 +165,19 @@
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.NewItemsOnly.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.Dependency.config.example" />
     <Content Include="App_Config\Include\Unicorn\Unicorn.Configs.Default.example" />
-    <Content Include="App_Config\Include\Unicorn\Unicorn.config" />
+    <Content Include="App_Config\Include\Unicorn\Unicorn.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Config\Include\Unicorn\Unicorn.AutoPublish.config" />
     <None Include="App_Config\Include\Unicorn\Unicorn.Configs.Default.config" />
+    <Content Include="styles\sample.css" />
     <Content Include="Views\Layouts\Amp\Amp MVC Layout.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="layouts\Sample layout.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Amp\MetadataController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +187,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Test.cshtml" />
     <Content Include="Views\Renderings\Amp\Amp Css.cshtml" />
+    <Content Include="Views\Metadata\AmpCssControllerRendering.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -192,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
