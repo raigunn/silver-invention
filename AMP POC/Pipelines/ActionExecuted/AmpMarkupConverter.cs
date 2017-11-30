@@ -10,6 +10,8 @@ using HtmlAgilityPack;
 namespace AMP_POC.Pipelines.ActionExecuted
 {
     /// <summary>
+    /// djd: to be deprecated in favor of Html2Amp library
+    /// 
     /// current issue: how do we handle images without height and width params, which are required by AMP
     /// https://ampbyexample.com/advanced/how_to_support_images_with_unknown_dimensions/
     /// </summary>

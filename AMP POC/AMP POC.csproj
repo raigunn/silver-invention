@@ -43,8 +43,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.8.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\packages\AngleSharp.0.9.8\lib\net45\AngleSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Configy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Configy.1.0.0\lib\net45\Configy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetGuard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlToAmp.1.0.0\lib\DotNetGuard.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Html2Amp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlToAmp.1.0.0\lib\Html2Amp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.6.5.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
@@ -189,6 +201,7 @@
     <Compile Include="Controllers\Amp\MetadataController.cs" />
     <Compile Include="Pipelines\ActionExecuted\AmpResultExecutedFilter.cs" />
     <Compile Include="Pipelines\ActionExecuted\AmpMarkupConverter.cs" />
+    <Compile Include="Pipelines\ActionExecuted\HtmlDocHelper.cs" />
     <Compile Include="Pipelines\ActionExecuted\RegisterFilterStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

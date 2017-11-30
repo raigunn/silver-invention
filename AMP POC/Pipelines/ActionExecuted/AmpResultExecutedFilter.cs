@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
+using Html2Amp;
+using Sitecore.Mvc.Extensions;
 using Sitecore.Mvc.Pipelines.MvcEvents.ResultExecuted;
 
 namespace AMP_POC.Pipelines.ActionExecuted
@@ -20,38 +22,43 @@ namespace AMP_POC.Pipelines.ActionExecuted
             var device = args.Context.HttpContext.Request.QueryString["amp"];
             if (device != "1") return;
             var response = args.Context.HttpContext.Response;
-            var f = response.Filter;
-            var o1 = response.Output;
 
+            // this is called on every control, but only the layout will have the Filter property set
+            // so all others shoudl just exit
             if (response.Filter == null) return;
-            ResponseFilterStream filter = new ResponseFilterStream(response.Filter);
-            //filter.TransformStream += filter_TransformStream;
-            filter.TransformString += filter_TransformString;
-            response.Filter = filter;
-            var o2 = response.Output;
-        }
 
-        MemoryStream filter_TransformStream(MemoryStream stream)
-        {
-            return FixPaths(stream);
+            // instantiate a filter from the response and subscribe to the TransformString event.
+            ResponseFilterStream filter = new ResponseFilterStream(response.Filter);
+            filter.TransformString += filter_TransformString;
+
+            // assign the tranformed filter back to the response == done
+            response.Filter = filter;
         }
 
         string filter_TransformString(string output)
         {
-            return FixPaths(output);
-        }
-        private string FixPaths(string output)
-        {
-            output = AmpMarkupConverter.Convert(output);
-
-            //output = output.Replace("<img", "<amp-img");
-            return output;
+            return CallHtml2AmpConverter(output);
         }
 
-        private MemoryStream FixPaths(MemoryStream stream)
+        private string CallHtml2AmpConverter(string output)
         {
-            stream = AmpMarkupConverter.Convert(stream);
-            return stream;
+            // todo handle config better
+            // configure and instantiate the HtmlToAmp converter
+            RunConfiguration config = new RunConfiguration();
+            config.RelativeUrlsHost = "http://google-amp-poc.local/";
+            config.ShouldDownloadImages = true;
+            var converter = new HtmlToAmpConverter().WithConfiguration(config);
+
+            // instantiate utility to parse out the body
+            HtmlDocHelper agility = new HtmlDocHelper(output);
+
+            // get just the body of the current request
+            string body = agility.GetBody();
+            // run the body through the Html2Amp converter
+            string ampHtml = converter.ConvertFromHtml(body).AmpHtml;
+            // put the converted body back into the request doc
+            string newOutput = agility.InsertBody(ampHtml);
+            return newOutput;
         }
     }
 }
